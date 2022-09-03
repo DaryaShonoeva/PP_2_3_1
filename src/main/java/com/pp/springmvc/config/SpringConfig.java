@@ -14,12 +14,12 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
-@ComponentScan("com.pp.springmvc")
 @EnableWebMvc
+@ComponentScan("com")
 public class SpringConfig implements WebMvcConfigurer {
+
     private final ApplicationContext applicationContext;
 
-    @Autowired
     public SpringConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
@@ -30,7 +30,10 @@ public class SpringConfig implements WebMvcConfigurer {
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
-        return  templateResolver;
+        templateResolver.setTemplateMode("HTML5");
+        templateResolver.setCacheable(false);
+        templateResolver.setCharacterEncoding("UTF-8");
+        return templateResolver;
     }
 
     @Bean
@@ -45,7 +48,8 @@ public class SpringConfig implements WebMvcConfigurer {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
+        resolver.setCharacterEncoding("UTF-8");
+        resolver.setContentType("text/html; charset=UTF-8");
         registry.viewResolver(resolver);
     }
-
 }
