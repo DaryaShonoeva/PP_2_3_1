@@ -16,6 +16,7 @@ public class UsersController {
     private final UsersServices usersServices;
 
 
+    @Autowired
     public UsersController(UsersServices usersServices) {
         this.usersServices = usersServices;
     }

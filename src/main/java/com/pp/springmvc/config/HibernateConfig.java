@@ -1,5 +1,6 @@
 package com.pp.springmvc.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +26,7 @@ import java.util.Properties;
 public class HibernateConfig {
     private final Environment environment;
 
+    @Autowired
     public HibernateConfig(Environment environment) {
         this.environment = environment;
     }
